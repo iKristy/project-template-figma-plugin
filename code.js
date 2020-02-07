@@ -98,8 +98,37 @@ main().then(() => {
             figma.root.insertChild(5, pageBreak);
         }
         if (msg.type === 'update-template') {
-            let pageTitle = msg.titletext;
-            let projectURL = msg.urlText;
+            let oldTitle = "";
+            let oldURL = "";
+            let currentPage = figma.root.children[0];
+            if (currentPage.name.length > 0) {
+                oldTitle = currentPage.name;
+                console.log(oldTitle);
+                currentPage.children.forEach(child => {
+                    if (child.type === "FRAME") {
+                        child.children.forEach(newChild => {
+                            if (newChild.type === "TEXT" && newChild.name === "Project URL") {
+                                oldURL = newChild.characters;
+                                console.log(oldURL);
+                            }
+                        });
+                    }
+                });
+            }
+            let pageTitle = "";
+            if (msg.titletext.length === 0) {
+                pageTitle = oldTitle;
+            }
+            else {
+                pageTitle = msg.titletext;
+            }
+            let projectURL = "";
+            if (msg.urlText.length === 0) {
+                projectURL = oldURL;
+            }
+            else {
+                projectURL = msg.urlText;
+            }
             let bgColor = msg.colorValue;
             let frame = figma.createFrame();
             let page = figma.createPage();
