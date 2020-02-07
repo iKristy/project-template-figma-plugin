@@ -1,0 +1,181 @@
+<form>
+  <div class="form-field">
+    <label>Project name</label>
+    <input id="projectName" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" name="project" type="text" value="" placeholder="New Feature Name">
+  </div>
+  <div class="form-field">
+    <label>GitHub Issue/PR (optional)</label>
+    <input id="projectURL" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" name="project-url" type="url" value="" placeholder="https://github.com/netlify/react-app-ui">
+  </div>
+  <div class="form-field">
+    <label>State of the project</label>
+    <select name="" id="select-menu" class="select-menu" onchange="val()">
+      <option value="1">Work in Progress</option>
+      <option value="2">Ready to Review</option>
+      <option value="3">Live</option>
+    </select>
+  </div>
+  <div class="btn-group">
+    <button id="create" type="submit" class="button btn-primary">Create</button>
+    <button id="cancel" class="button">Cancel</button>
+  </div>
+</form>
+<script>
+
+document.getElementById('create').onclick = () => {
+    const title = document.getElementById('projectName');
+    const projectURL = document.getElementById('projectURL');
+    const color = document.getElementById('select-menu');
+    const titletext = title.value;
+    const urlText = projectURL.value;
+    const colorValue = color.options[color.selectedIndex].value;
+
+    if(colorValue != 0) {
+      parent.postMessage({ pluginMessage: { type: 'create-template', titletext, urlText, colorValue } }, '*')
+    }  
+  }
+
+document.getElementById('cancel').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+}
+
+</script>
+
+<style>
+  @import url("https://rsms.me/inter/inter.css");
+
+  * { font-family: inherit; line-height: inherit; font-synthesis: none; }
+  a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote,
+  body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt,
+  em, embed, fieldset, figcaption, figure, footer, form, grid, h1, h2, h3, h4, h5,
+  h6, header, hgroup, hr, html, i, iframe, img, ins, kbd, label, legend, li, main,
+  mark, menu, nav, noscript, object, ol, output, p, pre, q, s, samp, section,
+  small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th,
+  thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+  }
+
+  :root {
+    --base: #0E1E25;
+    --base03: #F7F8F8;
+    --base09: #E9EBEB;
+    --base54: #7D8589;
+    --base87: #2D3B41;
+    --primaryDarker: #007A70;
+    --primaryShade: #EBFBFA;
+    --warning: #F6BC00;
+  }
+
+  body {
+    font: 12px/16px 'Inter', system-ui, -system-ui, sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    color: var(--base87); 
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+  }
+
+  button,
+  .button {
+    display: block;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: var(--base);
+    align-self: center;
+    background-color: var(--base09); /* Base.09 */
+    border: none;
+    border-radius: 6px;
+    outline: 0;
+    box-sizing: border-box;
+    display: inline-block;
+    font-family: inherit;
+    margin-right: 8px;
+    padding: 8px;
+    min-width: 36px;
+    max-height: 36px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .button:hover,
+  .button:active {
+    box-shadow: 0 0 0 2px var(--warning);
+  }
+
+  .button:active {
+    box-shadow: 0 0 0 2px var(--warning), inset 0 1px 3px 0 rgba(14,30,37,0.16);
+  }
+
+  .btn-primary {
+    color: white;
+    background-color: var(--primaryDarker); 
+  }
+
+  .btn-group {
+    margin-top: 8px;
+  }
+
+  select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+  }
+
+  input,
+  select {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: var(--base87);
+    min-width: 264px;
+    padding: 8px;
+    border-radius: 6px;
+    background: var(--base03);
+    box-shadow: inset 0 1px 3px 0 rgba(14,30,37,0.16);
+    border: none;
+  }
+
+  input::placeholder {
+    font-weight: 400;
+    color: var(--base54);
+  }
+
+  input:hover,
+  input:active,
+  select:active,
+  select:hover {
+    box-shadow: inset 0 1px 3px 0 rgba(14,30,37,0.16), 0 0 0 2px var(--warning);
+  }
+
+  input:focus,
+  select:focus {
+    outline: none;
+    box-shadow: inset 0 1px 3px 0 rgba(14,30,37,0.16), 0 0 0 1px var(--warning);
+  }
+
+  label {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--base54);
+    margin-bottom: 4px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0;
+  }
+
+  button[type="submit"] {
+    margin-top: 16px;
+  }
+</style>
