@@ -103,13 +103,11 @@ main().then(() => {
             let currentPage = figma.root.children[0];
             if (currentPage.name.length > 0) {
                 oldTitle = currentPage.name;
-                console.log(oldTitle);
                 currentPage.children.forEach(child => {
                     if (child.type === "FRAME") {
                         child.children.forEach(newChild => {
                             if (newChild.type === "TEXT" && newChild.name === "Project URL") {
                                 oldURL = newChild.characters;
-                                console.log(oldURL);
                             }
                         });
                     }

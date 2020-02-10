@@ -1,22 +1,30 @@
-This plugin template uses Typescript. If you are familiar with Javascript, Typescript will
-look very familiar. In fact, valid Javascript code is already valid Typescript code.
+# Netlify Project Template: Figma Plugin
 
-Typescript adds type annotations to variables. This allows code editors such as Visual Studio Code
-to provide information about the Figma API while you are writing code, as well as help catch bugs
-you previously didn't notice.
+This is a Figma plugin that automatically creates appropriate pages and a project cover to quickly get you started. 
 
-For more information, visit https://www.typescriptlang.org/
+## How to use
 
-Using Typescript requires a compiler to convert Typescript (code.ts) into Javascript (code.js)
-for the browser to run.
+Please keep in mind that this was written by someone who has no idea what he's doing, and remember that you can always undo after running the plugin... just in case.
 
-To get the TypeScript compiler working:
+1. In the menu bar, go to `Plugins → Development → Netlify Project Template`
+![Screenshot of the menu bar in Figma's Desktop app](/screenshots/screenshot-4.png?raw=true "Screenshot of Menubar")
+2. Type in the name of the project, project URL, and select the state of development. Hit `Create`.
+![Screenshot of the plugin's UI, with the form](/screenshots/screenshot-5.png?raw=true "Screenshot of Plugin")
+3. `Create` will create all the necessary pages and titles, remember that if you run that command on an existing file it will keep all the existing pages as well. 
+4. Alternatively, and if you'd like to just update the cover page, hit the `Update` button instead, and this will take the state of development dropdown and update the cover with any new information.
 
-1. Download Visual Studio Code if you haven't already: https://code.visualstudio.com/.
-2. Install the TypeScript compiler globally: `sudo npm install -g typescript`.
-3. Open this directory in Visual Studio Code.
-4. Compile TypeScript to JavaScript: Run the "Terminal > Run Build Task..." menu item,
-    then select "tsc: watch - tsconfig.json". You will have to do this again every time
-    you reopen Visual Studio Code.
+## How to install
 
-That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+At the moment, this plugin is definitely not ready for prime time and to be published in the public Figma Plugin directory, so we have to install it manually. Here's how:
+
+1. Open the Terminal, navigate to whatever directory you want, and clone this repo: `git clone git@github.com:netlify/netlify-project-template-figma-plugin.git`
+2. Open Figma's Desktop app, click *Plugins* → *Create your own plugin*.
+![Screenshot of Figma's Desktop app, in the Plugins page](/screenshots/screenshot-1.png?raw=true "Screenshot of Figma's Plugins page")
+3. Click to choose a manifest.json file
+![Screenshot of the Create new plugin UI in Figma](/screenshots/screenshot-2.png?raw=true "Screenshot of Create new Plugin in Figma")
+4. Navigate to where you cloned this repo in step 1, and select `manifest.json`.
+![Screenshot of the file explorer, selecting the manifest.json file](/screenshots/screenshot-3.png?raw=true "Screenshot of Finder")
+
+## Help
+
+I'm sure this is buggy as The Bug's Life, if you find one, please open an issue here on this repo and Rafa will look at it 🙏
