@@ -22,4 +22,4 @@ At the moment, this plugin is definitely not ready for prime time and to be publ
 
 ## Help
 
-I'm sure this is buggy as The Bug's Life, if you find one, please open an issue here on this repo and Rafa will look at it 🙏
+I'm sure this is buggy as The Bug's Life, if you find one, please open an issue here on this repo and [ping the design team on Slack](https://netlify.slack.com/archives/C015DJ64XPH). Thank you! 🙏
