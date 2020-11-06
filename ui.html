@@ -8,6 +8,10 @@
     <input id="projectURL" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" name="project-url" type="url" value="" placeholder="https://github.com/netlify/react-app-ui">
   </div>
   <div class="form-field">
+    <label>Pod</label>
+    <input id="podName" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" name="pod" type="text" value="" placeholder="Pod A/B/C/D/E">
+  </div>
+  <div class="form-field">
     <label>State of the project</label>
     <select name="" id="select-menu" class="select-menu">
       <option value="1">Work in Progress</option>
@@ -26,26 +30,30 @@
 document.getElementById('create').onclick = () => {
   const title = document.getElementById('projectName');
   const projectURL = document.getElementById('projectURL');
+  const pod = document.getElementById('podName');
   const color = document.getElementById('select-menu');
   const titletext = title.value;
   const urlText = projectURL.value;
+  const podName = pod.value;
   const colorValue = color.options[color.selectedIndex].value;
 
   if(colorValue != 0) {
-    parent.postMessage({ pluginMessage: { type: 'create-template', titletext, urlText, colorValue } }, '*')
+    parent.postMessage({ pluginMessage: { type: 'create-template', titletext, urlText, colorValue, podName } }, '*')
   }  
 }
 
 document.getElementById('update').onclick = () => {
   const title = document.getElementById('projectName');
   const projectURL = document.getElementById('projectURL');
+  const pod = document.getElementById('podName');
   const color = document.getElementById('select-menu');
   const titletext = title.value;
   const urlText = projectURL.value;
+  const podName = pod.value;
   const colorValue = color.options[color.selectedIndex].value;
 
   if(colorValue != 0) {
-    parent.postMessage({ pluginMessage: { type: 'update-template', titletext, urlText, colorValue } }, '*')
+    parent.postMessage({ pluginMessage: { type: 'update-template', titletext, urlText, colorValue, podName } }, '*')
   }  
 }
 
