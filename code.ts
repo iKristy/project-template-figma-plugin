@@ -1,4 +1,4 @@
-figma.showUI(__html__,{width: 320, height: 320});
+figma.showUI(__html__,{width: 320, height: 380});
 
 async function main() {
   await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
@@ -13,11 +13,13 @@ main().then(() => {
   
       let pageTitle = msg.titletext
       let projectURL = msg.urlText
+      let podName = msg.podName
       let bgColor = msg.colorValue
       let frame = figma.createFrame()
       let page = figma.createPage()
       let text = figma.createText()
       let label = figma.createText()
+      let pod = figma.createText()
       let url = figma.createText()
       let pageDisplay = figma.createPage()
       let pageMockups = figma.createPage()
@@ -28,11 +30,13 @@ main().then(() => {
       page.appendChild(frame)
       frame.appendChild(text)
       frame.appendChild(label)
+      frame.appendChild(pod)
       frame.appendChild(url)
       frame.resize(620,320)
 
       page.name = pageTitle
       label.name = "Label"
+      pod.name = "Pod"
       frame.name = "Thumb"
       text.name = "Title"
       url.name = "Project URL"
@@ -50,6 +54,16 @@ main().then(() => {
       text.resize(620,320)
       text.fontName = { family: "Roboto", style: "Bold" }
       text.fills = [{type: 'SOLID', color: {r: 255 / 255, g: 255 / 255, b: 255 / 255}}]
+
+      pod.y = 90
+      pod.x = 0
+      pod.fontSize = 24
+      pod.textAlignHorizontal ="LEFT"
+      pod.textAutoResize = "WIDTH_AND_HEIGHT"
+      pod.textAlignVertical = "TOP"
+      pod.fontName = { family: "Roboto", style: "Bold" }
+      pod.fills = [{type: 'SOLID', color: {r: 255 / 255, g: 255 / 255, b: 255 / 255}}]
+      pod.opacity = 0.7
 
       label.y = 0
       label.x = 0
@@ -74,6 +88,7 @@ main().then(() => {
         page.backgrounds = [{type: 'SOLID', color: {r: hex1 / 255, g: hex2 / 255, b: hex3 / 255}}]
         frame.backgrounds = [{type: 'SOLID', visible: false, color: {r: hex1 / 255, g: hex2 / 255, b: hex3 / 255}}]
         text.characters = pageTitle
+        pod.characters = podName
         label.characters = newLabel
         url.characters = projectURL
       }
@@ -132,21 +147,30 @@ main().then(() => {
       } else {
         projectURL = msg.urlText
       }
+      let podName = ""
+      if (msg.podName.length === 0) {
+        podName = oldURL
+      } else {
+        podName = msg.podName
+      }
       let bgColor = msg.colorValue
       let frame = figma.createFrame()
       let page = figma.createPage()
       let text = figma.createText()
       let label = figma.createText()
+      let pod = figma.createText()
       let url = figma.createText()
    
       page.appendChild(frame)
       frame.appendChild(text)
       frame.appendChild(label)
+      frame.appendChild(pod)
       frame.appendChild(url)
       frame.resize(620,320)
 
       page.name = pageTitle
       label.name = "Label"
+      pod.name = "Pod"
       frame.name = "Thumb"
       text.name = "Title"
       url.name = "Project URL"
@@ -169,6 +193,16 @@ main().then(() => {
       label.fontName = { family: "Roboto", style: "Regular" }
       label.fills = [{type: 'SOLID', color: {r: 255 / 255, g: 255 / 255, b: 255 / 255}}]
 
+      pod.y = 90
+      pod.x = 0
+      pod.fontSize = 32
+      pod.textAlignHorizontal ="LEFT"
+      pod.textAutoResize = "WIDTH_AND_HEIGHT"
+      pod.textAlignVertical = "TOP"
+      pod.fontName = { family: "Roboto", style: "Bold" }
+      pod.fills = [{type: 'SOLID', color: {r: 255 / 255, g: 255 / 255, b: 255 / 255}}]
+      pod.opacity = 0.7
+
       url.y = 187
       url.x = 0
       url.fontSize = 22
@@ -184,6 +218,7 @@ main().then(() => {
         frame.backgrounds = [{type: 'SOLID', visible: false, color: {r: hex1 / 255, g: hex2 / 255, b: hex3 / 255}}]
         text.characters = pageTitle
         label.characters = newLabel
+        pod.characters = podName
         url.characters = projectURL
       }
 
