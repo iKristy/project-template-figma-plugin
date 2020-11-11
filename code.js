@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-figma.showUI(__html__, { width: 320, height: 380 });
+figma.showUI(__html__, { width: 320, height: 400 });
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         yield figma.loadFontAsync({ family: "Roboto", style: "Regular" });
